@@ -64,7 +64,7 @@ forecast.response <- AdaptixForecast(conn = conn,
 				     stream = my.new.stream$id, 
 				     span = "48h")
 # Parse forecasted scenarios
-AdaptixForecastPointsToDataFrame(AdaptixGetForecastScenarios(forecast.response))
+AdaptixForecastPointsToDataframe(AdaptixGetForecastScenarios(forecast.response))
 #       1         at
 # 1 43.00 2017-01-05
 # 2 28.25 2017-01-06
