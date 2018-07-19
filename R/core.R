@@ -199,7 +199,8 @@ AdaptixDeleteHTTPRequest <- function(conn, url, verbose = F) {
 #' ConvertDateToISO8601(date = "2017-01-01")
 ConvertDateToISO8601 <- function(date, tz = "GMT")
 {
-  date <- strftime(date, format = "%Y-%m-%dT%H:%M:%S.000Z", usetz = F, tz = tz)
+  options(digits.secs=3)
+  date <- strftime(date, format = "%Y-%m-%dT%H:%M:%OSZ", usetz = F, tz = tz)
   return(date)
 }
 
