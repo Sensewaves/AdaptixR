@@ -193,8 +193,41 @@ AdaptixPublishPoints <- function(conn, stream, points, group.by = 1, verbose = F
     r <- AdaptixPostHTTPRequest(conn = conn,
                                url = paste0(conn@streams.apiURL, stream, "/points"),
                                payload = l, verbose = verbose)
-    AdaptixCheckRequest(request = r, c("201", "100"))
+    AdaptixCheckRequest(request = r, c("201", "200"))
   }
+  return(r$url)
+}
+
+
+#' Label points of an existing Adaptix stream.
+#'
+#' @param conn a valid Adaptix connection object.
+#' @param stream the ID of the stream.
+#' @param label the label to tag the points with.
+#' @param from if not NULL, the starting date of the time window within which the points will be labelled.
+#' @param to if not NULL, the closing date of the time window within which the points will be labelled.
+#' @param verbose display HTTP operation details.
+#' @return the URL location of the created points
+#' @examples
+#' AdaptixLabelPoints(conn = conn, stream = "123456abcdef", label = "invalid", from = "2018-09-01 00:00:00", to = "2018-09-02 00:00:00", verbose = F)
+AdaptixLabelPoints <- function(conn, stream, label, from = NULL, to = NULL, verbose = F)
+{
+  if(!(label %in% c("valid", "invalid", "ignore", "none", "unknown")))
+    stop("Invalid label supplied - allowed ones are 'valid', 'invalid', 'ignore', 'none', 'unknown'")
+
+  url <- paste0(conn@streams.apiURL, stream, "/points/label?label=", label)
+
+  if(!is.null(from) && from != "")
+    url <- paste0(url, "&from=", ConvertDateToISO8601(from))
+
+  if(!is.null(to) && to != "")
+    url <- paste0(url, "&to=", ConvertDateToISO8601(to))
+
+  r <- AdaptixPutHTTPRequest(conn = conn,
+                             url = url,
+                             payload = list(),
+                             verbose = verbose)
+  AdaptixCheckRequest(request = r, c("200"))
   return(r$url)
 }
 

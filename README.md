@@ -5,7 +5,7 @@ A package of R functions to interact with the [Adaptix](https://www.sensewaves.i
 
 ##### Requirements
 
-You will need an Adaptix account to use this R package. To get one, [get in touch](mailto:contact@sensewaves.com). 
+You will need an Adaptix account to use this R package. To get one, [get in touch](mailto:contact@sensewaves.io). 
 
 ### install
 
