@@ -8,9 +8,9 @@ Description: This package provides a set of functions that are wrappers around A
     Use four spaces when indenting paragraphs within the Description.
 License: GPL-3
 Encoding: UTF-8
-Depends: R (>= 3.3.2)
 LazyData: true
 Depends: 
+  R (>= 3.3.2),
   httr (>= 1.2.1), 
   rjson (>= 0.2.15),
   xts (>= 0.9-7)

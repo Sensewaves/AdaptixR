@@ -2,16 +2,16 @@
 % Please edit documentation in R/forecast.R
 \name{AdaptixGetForecastScenarios}
 \alias{AdaptixGetForecastScenarios}
-\title{?}
+\title{Converts scenarios in a forecast response to a comprehensive list structure of scenarios}
 \usage{
-AdaptixGetForecastScenarios(scenarios)
+AdaptixGetForecastScenarios(forecast.response)
 }
 \arguments{
-\item{scenarios}{.}
+\item{forecast.response}{A forecast response as returned by an AdaptixForecast call.}
 }
 \value{
-.
+transformed list of scenarios
 }
 \description{
-?
+Converts scenarios in a forecast response to a comprehensive list structure of scenarios
 }

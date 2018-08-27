@@ -2,16 +2,19 @@
 % Please edit documentation in R/forecast.R
 \name{AdaptixForecastPointsToXts}
 \alias{AdaptixForecastPointsToXts}
-\title{Convert a list returned by AdaptixForecast call to an Xts object}
+\title{Convert a scenario list returned by AdaptixForecast followed by an AdaptixGetForecastScenarios call to an Xts object}
 \usage{
 AdaptixForecastPointsToXts(forecast.list)
 }
 \arguments{
-\item{forecast.list}{.}
+\item{forecast.list}{a transformed list of scenarios as provided by AdaptixGetForecastScenarios on a forecast response}
 }
 \value{
-.
+an XTS object of the forecasted scenarios
 }
 \description{
-Convert a list returned by AdaptixForecast call to an Xts object
+Convert a scenario list returned by AdaptixForecast followed by an AdaptixGetForecastScenarios call to an Xts object
+}
+\examples{
+AdaptixForecastPointsToXts(AdaptixGetForecastScenarios(AdaptixForecast(conn = conn, stream = "123456abcdef", from = "2017-01-01", to = "2017-01-02", individual = T, number.of.scenarios = 3, verbose = F)))
 }

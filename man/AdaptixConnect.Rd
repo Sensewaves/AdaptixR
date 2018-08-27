@@ -2,26 +2,7 @@
 % Please edit documentation in R/core.R
 \name{AdaptixConnect}
 \alias{AdaptixConnect}
-\title{#' Creates an Adaptix Connection object to be supplied to API calls.
-#'
-#' @param url the base URL of the API.
-#' @param api.key Your Adaptix API key.
-#' @return The Connection object (list).
-#' @examples
-#' AdaptixConnect(url = "https://alpha.adaptix.io/api", api.key = "123456789abcdefgh")
-AdaptixConnect <- function(url, api.key) {
-  return(list(
-    apiURL = url,
-    apikey = api.key,
-    users.apiURL = paste0(url, "/users/"),
-    streams.apiURL = paste0(url, "/streams/"),
-    forecast.apiURL = paste0(url, "/forecasts"),
-    search.apiURL = paste0(url, "/matches"),
-    devices.apiURL = paste0(url, "/devices/"),
-    cluster.apiURL = paste0(url, "/segmentations/"),
-    configurations.apiURL = paste0(url, "/configurations/")
-  ))
-}}
+\title{Creates an Adaptix Connection object to be supplied to API calls.}
 \usage{
 AdaptixConnect(url, api.key)
 }

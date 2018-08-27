@@ -2,16 +2,19 @@
 % Please edit documentation in R/forecast.R
 \name{AdaptixForecastPointsToDataframe}
 \alias{AdaptixForecastPointsToDataframe}
-\title{Convert a list returned by AdaptixForecast call to a data frame}
+\title{Convert a scenario list returned by AdaptixForecast followed by an AdaptixGetForecastScenarios call to a data frame}
 \usage{
 AdaptixForecastPointsToDataframe(forecast.list)
 }
 \arguments{
-\item{forecast.list}{.}
+\item{forecast.list}{a transformed list of scenarios as provided by AdaptixGetForecastScenarios on a forecast response}
 }
 \value{
-.
+a dataframe object of forecasted scenarios
 }
 \description{
-Convert a list returned by AdaptixForecast call to a data frame
+Convert a scenario list returned by AdaptixForecast followed by an AdaptixGetForecastScenarios call to a data frame
+}
+\examples{
+AdaptixForecastPointsToDataframe(AdaptixGetForecastScenarios(AdaptixForecast(conn = conn, stream = "123456abcdef", from = "2017-01-01", to = "2017-01-02", individual = T, number.of.scenarios = 3, verbose = F)))
 }

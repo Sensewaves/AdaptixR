@@ -11,7 +11,7 @@ AdaptixForecast(conn, stream, from = NULL, to = NULL, span = NULL,
 \arguments{
 \item{conn}{a valid Adaptix connection object.}
 
-\item{stream}{the ID of the stream from which to retrieve the points.}
+\item{stream}{the ID of the stream on which to perform the forecast.}
 
 \item{from}{if not NULL, the starting date of the forecast. If NULL, defaults to the last point of the stream.}
 
