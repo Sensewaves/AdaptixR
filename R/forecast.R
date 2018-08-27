@@ -3,7 +3,7 @@
 #' Perform forecast.
 #'
 #' @param conn a valid Adaptix connection object.
-#' @param stream the ID of the stream from which to retrieve the points.
+#' @param stream the ID of the stream on which to perform the forecast.
 #' @param from if not NULL, the starting date of the forecast. If NULL, defaults to the last point of the stream.
 #' @param to if not NULL, the closing date of the forecast. required if span is NULL.
 #' @param span a "span string" describing the forecast horizon. required if to is NULL.
