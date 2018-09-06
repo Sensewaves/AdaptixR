@@ -171,8 +171,9 @@ AdaptixGetNotifications <- function(conn, stream, from = NULL, to = NULL, groupb
 #' @return the URL location of the created points
 #' @examples
 #' AdaptixPublishPoints(conn = conn, stream = "123456abcdef", points = my_points.df, verbose = F)
-AdaptixPublishPoints <- function(conn, stream, points, group.by = 1, verbose = F)
+AdaptixPublishPoints <- function(conn, stream, points, group.by = 1, retries = 3, retry.delay = 5.0,  verbose = F)
 {
+  retry.count <- 0
   if(is.null(stream) || is.null(points))
     stop("missing parameters.")
 
@@ -193,7 +194,15 @@ AdaptixPublishPoints <- function(conn, stream, points, group.by = 1, verbose = F
     r <- AdaptixPostHTTPRequest(conn = conn,
                                url = paste0(conn@streams.apiURL, stream, "/points"),
                                payload = l, verbose = verbose)
-    AdaptixCheckRequest(request = r, c("201", "200"))
+    while(httr::status_code(r) != "201" && retry.count <= retries) {
+      Sys.sleep(5.0)
+      r <- AdaptixPostHTTPRequest(conn = conn,
+                                  url = paste0(conn@streams.apiURL, stream, "/points"),
+                                  payload = l, verbose = verbose)
+      retry.count <- retry.count + 1
+    }
+
+    AdaptixCheckRequest(request = r, c("201"))
   }
   return(r$url)
 }
