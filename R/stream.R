@@ -204,7 +204,7 @@ AdaptixDeleteStream <- function(conn, streamURL = NULL, streamID = NULL, verbose
 #' @param verbose display HTTP operation details.
 #' @return the collection of points that were just deleted, as a list
 #' @examples
-#' AdaptixCreateStream(conn = conn, streamID = "123456abcdef", verbose = F)
+#' AdaptixDeleteStreamPoints(conn = conn, streamID = "123456abcdef", verbose = F)
 AdaptixDeleteStreamPoints <- function(conn, streamURL = NULL, streamID = NULL, verbose = FALSE) {
   if(is.null(streamURL) && is.null(streamID))
     stop("invalid parameters.")
@@ -213,6 +213,7 @@ AdaptixDeleteStreamPoints <- function(conn, streamURL = NULL, streamID = NULL, v
   } else if(!is.null(streamID)){
     url <- paste0(conn@streams.apiURL, streamID, "/points")
   }
+  r <- AdaptixDeleteHTTPRequest(conn = conn, url = url, verbose = verbose)
   AdaptixCheckRequest(request = r, "202")
   return(httr::content(r))
 }
